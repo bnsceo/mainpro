@@ -13,8 +13,8 @@ const Hero = () => {
   // Initialize particle animation
   useParticleCanvas(canvasRef, 'rgb(255, 255, 255)', 80);
   
-  // Typewriter effect
-  const displayText = useTypewriter("Transforming ideas into interactive experiences", 100, 3000);
+  // Improved typewriter content with shorter, more impactful phrases
+  const displayText = useTypewriter("Crafting digital experiences with code and design", 100, 3000);
 
   const scrollToNext = () => {
     const aboutSection = document.getElementById("about");
