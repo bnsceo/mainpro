@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  base: "/interactive-resume-laboratory/", // Add base path for GitHub Pages
+  base: "/interactive-resume-laboratory/", // Base path for GitHub Pages
   plugins: [
     react(),
     mode === 'development' &&
@@ -21,4 +21,13 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  optimizeDeps: {
+    esbuildOptions: {
+      // Set target to a compatible environment
+      target: 'es2020',
+    }
+  },
+  build: {
+    target: 'es2020',
+  }
 }));
