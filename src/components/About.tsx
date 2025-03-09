@@ -82,7 +82,11 @@ const About = () => {
                       <span className="font-medium">{skill.skill}</span>
                       <span>{skill.value}%</span>
                     </div>
-                    <Progress value={skill.value} className="h-2 bg-muted/50" indicatorClassName="bg-gradient-to-r from-primary to-secondary" />
+                    <Progress 
+                      value={skill.value} 
+                      className="h-2 bg-muted/50" 
+                      indicatorClassName="bg-gradient-to-r from-primary to-secondary" 
+                    />
                   </div>
                 ))}
               </div>
