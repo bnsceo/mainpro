@@ -1,3 +1,4 @@
+
 # Welcome to your Lovable project
 
 ## Project info
@@ -50,9 +51,33 @@ npm run dev
 - Click on "New codespace" to launch a new Codespace environment.
 - Edit files directly within the Codespace and commit and push your changes once you're done.
 
+## GitHub Pages Deployment
+
+This project is configured to automatically deploy to GitHub Pages when you push to the main branch. You can view the deployed site at:
+
+https://bnsceo.github.io/interactive-resume-laboratory/
+
+### Manual Deployment
+
+If you want to deploy manually:
+
+1. Build the project:
+```sh
+npm run build
+```
+
+2. Push the changes to GitHub:
+```sh
+git add .
+git commit -m "Update site"
+git push
+```
+
+3. The GitHub Actions workflow will automatically deploy your changes.
+
 ## What technologies are used for this project?
 
-This project is built with .
+This project is built with:
 
 - Vite
 - TypeScript
@@ -60,10 +85,11 @@ This project is built with .
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## How can I deploy this project elsewhere?
 
 Simply open [Lovable](https://lovable.dev/projects/bba4458a-e5eb-4cb2-95b6-776d71700dd8) and click on Share -> Publish.
 
 ## I want to use a custom domain - is that possible?
 
 We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+
