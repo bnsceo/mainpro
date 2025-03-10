@@ -6,8 +6,9 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowDown } from "lucide-react";
 
 // Define constants for magic numbers
-const TRANSLATE_Y_HIDDEN = "translate-y-12";
-const TRANSLATE_Y_VISIBLE = "translate-y-0";
+// More descriptive names for the constants
+const TRANSLATE_Y_HIDDEN_CLASS = "translate-y-12";
+const TRANSLATE_Y_VISIBLE_CLASS = "translate-y-0";
 
 const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
