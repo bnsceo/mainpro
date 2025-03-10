@@ -15,10 +15,23 @@ export const useParticleCanvas = (
         let animationFrameId: number;
         
         const canvas = canvasRef.current;
-        if (!canvas) return;
+        if (!canvas) {
+            // Don't return early from the hook
+            // This was causing the React Error #321
+            console.warn("Canvas element not found");
+            return () => {
+                isMounted = false;
+            };
+        }
         
         const ctx = canvas.getContext('2d');
-        if (!ctx) return;
+        if (!ctx) {
+            // Don't return early from the hook
+            console.warn("Canvas context not available");
+            return () => {
+                isMounted = false;
+            };
+        }
         
         // Set initial canvas dimensions
         canvas.width = canvas.offsetWidth;
@@ -55,9 +68,7 @@ export const useParticleCanvas = (
             animationFrameId = requestAnimationFrame(animate);
         };
 
-        if (isMounted) {
-            animate();
-        }
+        animate();
 
         const handleResize = () => {
             if (isMounted && canvas) {
