@@ -4,17 +4,26 @@ import { useInView } from "@/lib/animations";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowDown } from "lucide-react";
 
-// Assuming useParticleCanvas is in "@/lib/animations"
-// Replace this with the actual content of your useParticleCanvas hook
-export const useParticleCanvas = (canvasRef, particleColor, particleCount) => {
+// Define proper types for the hook
+export const useParticleCanvas = (
+  canvasRef: React.RefObject<HTMLCanvasElement>,
+  particleColor: string,
+  particleCount: number
+) => {
     useEffect(() => {
         let isMounted = true;
+        let animationFrameId: number;
+        
         const canvas = canvasRef.current;
         if (!canvas) return;
+        
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
+        
+        // Set initial canvas dimensions
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
 
-        // Example particle animation logic (replace with your actual logic)
         const particles = [];
         for (let i = 0; i < particleCount; i++) {
             particles.push({
@@ -43,13 +52,15 @@ export const useParticleCanvas = (canvasRef, particleColor, particleCount) => {
                 ctx.fill();
             });
 
-            requestAnimationFrame(animate);
+            animationFrameId = requestAnimationFrame(animate);
         };
 
-        animate();
+        if (isMounted) {
+            animate();
+        }
 
         const handleResize = () => {
-            if (isMounted) {
+            if (isMounted && canvas) {
                 canvas.width = canvas.offsetWidth;
                 canvas.height = canvas.offsetHeight;
             }
@@ -60,6 +71,9 @@ export const useParticleCanvas = (canvasRef, particleColor, particleCount) => {
         return () => {
             isMounted = false;
             window.removeEventListener('resize', handleResize);
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+            }
         };
     }, [canvasRef, particleColor, particleCount]);
 };
@@ -68,7 +82,7 @@ const Hero = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const { ref, isInView } = useInView({}, true);
 
-    // Initialize particle animation
+    // Using the hook that's defined in this file
     useParticleCanvas(canvasRef, 'rgb(255, 255, 255)', 80);
 
     const scrollToNext = () => {
@@ -81,6 +95,7 @@ const Hero = () => {
     return (
         <section
             id="hero"
+            // Ensure the type assertion is compatible
             ref={ref as React.RefObject<HTMLDivElement>}
             className="relative min-h-screen flex items-center justify-center overflow-hidden animated-bg py-20"
         >
