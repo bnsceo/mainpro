@@ -1,6 +1,6 @@
 
 import { useRef, useEffect } from "react";
-import { useParticleCanvas, useTypewriter } from "@/lib/animations";
+import { useParticleCanvas, useStickFigureAnimation } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 import { useInView } from "@/lib/animations";
 import { Button } from "@/components/ui/button";
@@ -8,13 +8,14 @@ import { ArrowRight, ArrowDown } from "lucide-react";
 
 const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const stickFigureCanvasRef = useRef<HTMLCanvasElement>(null);
   const { ref, isInView } = useInView({}, true);
   
   // Initialize particle animation
   useParticleCanvas(canvasRef, 'rgb(255, 255, 255)', 80);
   
-  // Improved typewriter content with shorter, more impactful phrases
-  const displayText = useTypewriter("Crafting digital experiences with code and design", 100, 3000);
+  // Initialize stick figure animation
+  useStickFigureAnimation(stickFigureCanvasRef);
 
   const scrollToNext = () => {
     const aboutSection = document.getElementById("about");
@@ -46,10 +47,12 @@ const Hero = () => {
               Digital <span className="highlight">Alchemist</span>
             </h1>
             
-            <p className="text-lg md:text-xl text-foreground/80 h-16">
-              {displayText}
-              <span className="animate-pulse">|</span>
-            </p>
+            <div className="relative h-20">
+              <canvas 
+                ref={stickFigureCanvasRef} 
+                className="w-full h-full"
+              />
+            </div>
             
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 mt-4">
               <Button 

@@ -1,31 +1,20 @@
 
-import { useRef, useEffect, useState } from "react";
-import { useInView } from "@/lib/animations";
+import { useRef, useEffect } from "react";
+import { useInView, useInteractiveParticles } from "@/lib/animations";
 import { cn } from "@/lib/utils";
-import { TIMELINE_DATA, SKILLS_DATA, DATA_STREAM, SERVICES } from "@/lib/constants";
+import { TIMELINE_DATA, SKILLS_DATA, SERVICES } from "@/lib/constants";
 import { Progress } from "@/components/ui/progress";
 
 const About = () => {
   const { ref, isInView } = useInView({}, true);
-  const [visibleDataStream, setVisibleDataStream] = useState<string[]>([]);
-
+  const interactiveCanvasRef = useRef<HTMLCanvasElement>(null);
+  
+  // Initialize interactive particles system when in view
   useEffect(() => {
-    if (isInView) {
-      // Initialize data stream animation
-      const interval = setInterval(() => {
-        if (visibleDataStream.length < DATA_STREAM.length) {
-          setVisibleDataStream((prev) => [
-            ...prev,
-            DATA_STREAM[prev.length],
-          ]);
-        } else {
-          clearInterval(interval);
-        }
-      }, 1500);
-
-      return () => clearInterval(interval);
+    if (isInView && interactiveCanvasRef.current) {
+      useInteractiveParticles(interactiveCanvasRef);
     }
-  }, [isInView, visibleDataStream.length]);
+  }, [isInView]);
 
   return (
     <section
@@ -113,25 +102,16 @@ const About = () => {
           "mt-16 transition-all duration-700 delay-500",
           isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
         )}>
-          <h3 className="text-2xl font-bold mb-6 text-center">Data Stream</h3>
-          <div className="glass-card p-8 min-h-[200px] relative overflow-hidden">
-            {visibleDataStream.map((item, index) => (
-              <div 
-                key={index} 
-                className="rounded-md bg-primary/30 p-3 mb-3 transform transition-all duration-500"
-                style={{ 
-                  animationDelay: `${index * 200}ms`,
-                  opacity: 1 - (index * 0.15),
-                }}
-              >
-                {item}
-              </div>
-            ))}
-            {visibleDataStream.length === 0 && (
-              <div className="text-center text-foreground/50 py-10">
-                Initializing data stream...
-              </div>
-            )}
+          <h3 className="text-2xl font-bold mb-6 text-center">Interactive Particle Field</h3>
+          <div className="glass-card p-8 min-h-[300px] relative overflow-hidden">
+            <canvas 
+              ref={interactiveCanvasRef} 
+              className="w-full h-[300px]"
+            />
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none text-center opacity-70">
+              <p className="mb-2 text-sm">Move your mouse over the canvas</p>
+              <p className="text-xs">The particles respond to your movement</p>
+            </div>
           </div>
         </div>
       </div>
