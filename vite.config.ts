@@ -9,6 +9,10 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    allowedHosts: [
+      "bba4458a-e5eb-4cb2-95b6-776d71700dd8.lovableproject.com",
+      "localhost"
+    ],
   },
   base: "/interactive-resume-laboratory/", // Base path for GitHub Pages
   plugins: [
