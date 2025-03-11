@@ -16,7 +16,7 @@ export default defineConfig(({ mode }) => ({
       "localhost"
     ],
   },
-  base: mode === 'production' ? "/interactive-resume-laboratory/" : "/",
+  base: "/",
   plugins: [
     react(),
     mode === 'development' &&
