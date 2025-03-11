@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { useTypewriter } from '@/lib/animations';
 import { cn } from '@/lib/utils';
@@ -15,7 +14,13 @@ const SUPPORTED_COMMANDS = [
   { name: 'projects --latest', description: 'View recent projects' },
   { name: 'contact --show', description: 'Display contact information' },
   { name: 'clear', description: 'Clear terminal screen' },
-  { name: 'randomfact', description: 'Display a random coding fact' },
+  { name: 'experience', description: 'Show work experience' },
+  { name: 'education', description: 'Display educational background' },
+  { name: 'achievements', description: 'List notable achievements' },
+  { name: 'certificates', description: 'Show professional certificates' },
+  { name: 'languages', description: 'List programming languages' },
+  { name: 'tools', description: 'Show development tools' },
+  { name: 'social --links', description: 'Display social media links' },
   { name: 'quote', description: 'Show a motivational quote' },
   { name: 'help', description: 'List available commands' },
   { name: 'exit', description: 'End terminal session' },
@@ -64,7 +69,6 @@ const CyberpunkTerminal: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const outputRef = useRef<HTMLDivElement>(null);
 
-  // Track if component is mounted to avoid state updates on unmounted component
   const mounted = useRef(true);
 
   useEffect(() => {
@@ -79,7 +83,6 @@ const CyberpunkTerminal: React.FC = () => {
     return `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
   }
 
-  // 3D perspective effect based on mouse position
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!terminalRef.current || !terminalActive) return;
@@ -87,21 +90,17 @@ const CyberpunkTerminal: React.FC = () => {
       const terminal = terminalRef.current;
       const rect = terminal.getBoundingClientRect();
       
-      // Calculate mouse position relative to the center of the terminal
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
       
-      // Calculate rotation based on mouse distance from center
-      const rotX = ((e.clientY - centerY) / rect.height) * 8; // Max 8 degrees rotation
-      const rotY = -((e.clientX - centerX) / rect.width) * 8; // Max 8 degrees rotation
+      const rotX = ((e.clientY - centerY) / rect.height) * 8;
+      const rotY = -((e.clientX - centerX) / rect.width) * 8;
       
-      // Apply the rotation with a slight delay for smooth effect
       setRotateX(rotX);
       setRotateY(rotY);
-      setTranslateZ(5); // Slight hover effect when mouse moves
+      setTranslateZ(5);
     };
     
-    // Reset position when mouse leaves
     const handleMouseLeave = () => {
       setRotateX(0);
       setRotateY(0);
@@ -117,14 +116,12 @@ const CyberpunkTerminal: React.FC = () => {
     };
   }, [terminalActive]);
 
-  // Scroll to bottom of terminal when new command is added
   useEffect(() => {
     if (outputRef.current) {
       outputRef.current.scrollTop = outputRef.current.scrollHeight;
     }
   }, [commands]);
 
-  // Focus input when terminal is clicked
   useEffect(() => {
     const handleTerminalClick = () => {
       if (inputRef.current && terminalActive) {
@@ -144,7 +141,6 @@ const CyberpunkTerminal: React.FC = () => {
     };
   }, [terminalActive]);
 
-  // Random glitch effect
   useEffect(() => {
     const glitchInterval = setInterval(() => {
       if (!mounted.current) return;
@@ -155,7 +151,7 @@ const CyberpunkTerminal: React.FC = () => {
           setGlitchActive(false);
         }
       }, 150);
-    }, Math.random() * 10000 + 5000); // Random interval between 5-15 seconds
+    }, Math.random() * 10000 + 5000);
     
     return () => clearInterval(glitchInterval);
   }, []);
@@ -167,36 +163,76 @@ const CyberpunkTerminal: React.FC = () => {
   const processCommand = (cmd: string): string | string[] => {
     const trimmedCmd = cmd.trim().toLowerCase();
     
-    if (trimmedCmd === 'whoami') {
-      return "Anderson Paulino – Developer | Data Analyst";
-    } else if (trimmedCmd === 'skills --list') {
-      return "Python, SQL, JavaScript, React, Data Visualization, APIs";
-    } else if (trimmedCmd === 'projects --latest') {
-      return "[🚀 Truck Dispatching Platform], [📊 Data Visualization Tool]";
-    } else if (trimmedCmd === 'contact --show') {
-      return "Email: youremail@example.com | LinkedIn: linkedin.com/in/andersonpaulino";
-    } else if (trimmedCmd === 'clear') {
-      setCommands([]);
-      return "";
-    } else if (trimmedCmd === 'randomfact') {
-      const randomIndex = Math.floor(Math.random() * RANDOM_FACTS.length);
-      return RANDOM_FACTS[randomIndex];
-    } else if (trimmedCmd === 'quote') {
-      const randomIndex = Math.floor(Math.random() * QUOTES.length);
-      return QUOTES[randomIndex];
-    } else if (trimmedCmd === 'help') {
-      return SUPPORTED_COMMANDS.map(cmd => `${cmd.name} - ${cmd.description}`);
-    } else if (trimmedCmd === 'exit') {
-      setTimeout(() => {
-        if (mounted.current) {
-          setTerminalActive(false);
-        }
-      }, 1000);
-      return "Session terminated. Reload to restart.";
-    } else if (trimmedCmd === '') {
-      return "";
-    } else {
-      return `Command not found: '${cmd}'. Try 'help' for a list of commands.`;
+    switch (trimmedCmd) {
+      case 'whoami':
+        return "Anderson Paulino – Full Stack Developer & Data Analyst";
+      case 'skills --list':
+        return [
+          "Frontend: React, TypeScript, Tailwind CSS",
+          "Backend: Node.js, Python, SQL",
+          "Data: Analytics, Visualization, Machine Learning",
+          "Tools: Git, Docker, AWS"
+        ];
+      case 'projects --latest':
+        return [
+          "🚀 Truck Dispatching Platform (2024)",
+          "📊 Data Visualization Dashboard (2023)",
+          "🤖 AI-Powered Chat Interface (2023)",
+          "Type 'projects info [number]' for details"
+        ];
+      case 'experience':
+        return [
+          "Senior Developer @ TechCorp (2022-Present)",
+          "Data Analyst @ DataCo (2020-2022)",
+          "Full Stack Developer @ WebSolutions (2018-2020)"
+        ];
+      case 'education':
+        return [
+          "MSc Computer Science - Tech University (2020)",
+          "BSc Software Engineering - Code College (2018)"
+        ];
+      case 'certificates':
+        return [
+          "AWS Certified Solutions Architect",
+          "Google Data Analytics Professional",
+          "Meta Frontend Developer"
+        ];
+      case 'languages':
+        return [
+          "Python ████████░░ 80%",
+          "JavaScript ███████░░░ 70%",
+          "TypeScript ████████░░ 80%",
+          "SQL ██████████ 100%"
+        ];
+      case 'tools':
+        return [
+          "VS Code, PyCharm, DataGrip",
+          "Git, GitHub Actions, Jenkins",
+          "Docker, Kubernetes, AWS",
+          "Figma, Adobe XD"
+        ];
+      case 'social --links':
+        return [
+          "GitHub: github.com/digitalchemist",
+          "LinkedIn: linkedin.com/in/andersonpaulino",
+          "Twitter: @digital_alchemist"
+        ];
+      case 'quote':
+        const randomIndex = Math.floor(Math.random() * QUOTES.length);
+        return QUOTES[randomIndex];
+      case 'help':
+        return SUPPORTED_COMMANDS.map(cmd => `${cmd.name} - ${cmd.description}`);
+      case 'exit':
+        setTimeout(() => {
+          if (mounted.current) {
+            setTerminalActive(false);
+          }
+        }, 1000);
+        return "Session terminated. Reload to restart.";
+      case '':
+        return "";
+      default:
+        return `Command not found: '${cmd}'. Try 'help' for a list of commands.`;
     }
   };
 
@@ -205,7 +241,6 @@ const CyberpunkTerminal: React.FC = () => {
       const command = inputValue;
       setInputValue('');
       
-      // Add command to history
       const newCommand: Command = {
         command,
         response: '',
@@ -214,12 +249,10 @@ const CyberpunkTerminal: React.FC = () => {
       
       setCommands(prev => [...prev, newCommand]);
       
-      // Process command and set response with typing effect
       setIsTyping(true);
       
       const response = processCommand(command);
       
-      // If the command is 'clear', we don't need to update the response
       if (command.trim().toLowerCase() !== 'clear') {
         setTimeout(() => {
           if (mounted.current) {
@@ -231,7 +264,7 @@ const CyberpunkTerminal: React.FC = () => {
             });
             setIsTyping(false);
           }
-        }, 500); // Simulate processing delay
+        }, 500);
       } else {
         setIsTyping(false);
       }
@@ -251,7 +284,6 @@ const CyberpunkTerminal: React.FC = () => {
         transition: 'transform 0.2s ease-out'
       }}
     >
-      {/* Terminal header */}
       <div className="flex items-center justify-between px-4 py-2 bg-black/80 border-b border-primary/20">
         <div className="flex items-center space-x-2">
           <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -262,7 +294,6 @@ const CyberpunkTerminal: React.FC = () => {
         <div className="text-xs font-mono text-primary/70">v4.2.1</div>
       </div>
       
-      {/* Terminal output */}
       <div 
         ref={outputRef}
         className="h-[calc(100%-70px)] p-4 font-mono text-sm overflow-y-auto bg-black/70 backdrop-blur-sm"
@@ -292,7 +323,6 @@ const CyberpunkTerminal: React.FC = () => {
         )}
       </div>
       
-      {/* Terminal input */}
       <div className="absolute bottom-0 left-0 right-0 flex items-center px-4 py-2 bg-black/90 border-t border-primary/20">
         <span className="text-secondary mr-2">&gt;</span>
         <input
@@ -312,7 +342,6 @@ const CyberpunkTerminal: React.FC = () => {
         )}></div>
       </div>
       
-      {/* Terminal overlay effects */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent opacity-30"></div>
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjAyIi8+PC9zdmc+')] opacity-20"></div>

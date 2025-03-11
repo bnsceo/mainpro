@@ -6,12 +6,12 @@ import { useInView } from "@/lib/animations";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import CyberpunkTerminal from "./CyberpunkTerminal";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { ref, isInView } = useInView({}, true);
   
-  // Initialize particle animation
   useParticleCanvas(canvasRef, 'rgb(255, 255, 255)', 80);
 
   const scrollToNext = () => {
@@ -22,7 +22,6 @@ const Hero = () => {
   };
 
   useEffect(() => {
-    // Debug log to check if component is rendering
     console.log("Hero component rendered");
   }, []);
 
@@ -45,9 +44,16 @@ const Hero = () => {
               isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
             )}
           >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-              Digital <span className="highlight">Alchemist</span>
-            </h1>
+            <div className="flex flex-col items-center lg:items-start space-y-6">
+              <Avatar className="w-32 h-32 border-4 border-primary/20 shadow-xl shadow-primary/20">
+                <AvatarImage src="https://github.com/shadcn.png" alt="Profile" />
+                <AvatarFallback className="bg-primary/5 text-2xl font-bold">DA</AvatarFallback>
+              </Avatar>
+              
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                Digital <span className="highlight">Alchemist</span>
+              </h1>
+            </div>
             
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 mt-4">
               <Button 
@@ -70,7 +76,6 @@ const Hero = () => {
             </div>
           </div>
           
-          {/* Terminal Container - Making sure it's visible on all screen sizes */}
           <div 
             className={cn(
               "flex justify-center items-center transition-all duration-1000 delay-300",
