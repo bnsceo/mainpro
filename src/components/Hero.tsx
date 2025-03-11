@@ -11,7 +11,7 @@ const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { ref, isInView } = useInView({}, true);
   
-  // Initialize particle animation with updated comment
+  // Initialize particle animation
   useParticleCanvas(canvasRef, 'rgb(255, 255, 255)', 80);
 
   const scrollToNext = () => {
@@ -65,18 +65,19 @@ const Hero = () => {
             </div>
           </div>
           
+          {/* Terminal Container - Making sure it's visible on all screen sizes */}
           <div 
             className={cn(
-              "hidden lg:flex justify-center items-center transition-all duration-1000 delay-300",
+              "flex justify-center items-center transition-all duration-1000 delay-300",
               isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
             )}
           >
-            <div className="relative w-full h-[400px] max-w-[500px]">
+            <div className="relative w-full max-w-[500px] h-[400px]">
               {/* Decorative elements */}
               <div className="absolute top-0 left-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-pulse-soft"></div>
               <div className="absolute bottom-0 right-0 w-64 h-64 bg-secondary/20 rounded-full blur-3xl animate-pulse-soft" style={{ animationDelay: "2s" }}></div>
               
-              {/* Cyberpunk Terminal - replacing the stick figure */}
+              {/* Cyberpunk Terminal - making it visible on all screen sizes */}
               <CyberpunkTerminal />
             </div>
           </div>
