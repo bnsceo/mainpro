@@ -11,7 +11,7 @@ const Hero = () => {
   const stickFigureCanvasRef = useRef<HTMLCanvasElement>(null);
   const { ref, isInView } = useInView({}, true);
   
-  // Initialize particle animation
+  // Initialize particle animation with updated comment
   useParticleCanvas(canvasRef, 'rgb(255, 255, 255)', 80);
   
   // Initialize stick figure animation
