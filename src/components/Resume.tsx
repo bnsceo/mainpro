@@ -19,7 +19,7 @@ const Resume = () => {
     // Simulate download - in a real app, this would link to a PDF file
     const link = document.createElement("a");
     link.href = "#";
-    link.download = "digital-alchemist-resume.pdf";
+    link.download = "resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -106,7 +106,7 @@ const Resume = () => {
             <div className="glass-card p-6 lg:p-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-xl font-bold mb-6 pb-2 border-b border-primary/30">Skills</h3>
+                  <h3 className="text-xl font-bold mb-6 pb-2 border-b border-primary/30">Technical Skills</h3>
                   <div className="flex flex-wrap gap-2">
                     {RESUME_SECTIONS.skills.map((skill, index) => (
                       <Badge 
@@ -134,13 +134,41 @@ const Resume = () => {
                 </div>
               </div>
               
+              <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                  <h3 className="text-xl font-bold mb-6 pb-2 border-b border-primary/30">Languages</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {RESUME_SECTIONS.languages.map((language, index) => (
+                      <Badge 
+                        key={index} 
+                        variant="outline"
+                        className="bg-secondary/10 hover:bg-secondary/20 text-foreground mb-2"
+                      >
+                        {language}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 className="text-xl font-bold mb-6 pb-2 border-b border-primary/30">Awards & Recognition</h3>
+                  <div className="space-y-4">
+                    {RESUME_SECTIONS.awards.map((award, index) => (
+                      <div key={index} className="bg-muted/30 p-4 rounded-lg">
+                        <p className="text-foreground/80">{award}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              
               <div className="mt-8">
                 <h3 className="text-xl font-bold mb-6 pb-2 border-b border-primary/30">Professional Summary</h3>
                 <p className="text-foreground/80 mb-4">
-                  Digital Alchemist specializing in transforming complex concepts into elegant digital experiences. With a strong foundation in front-end technologies and an eye for design, I create immersive web applications that balance technical excellence with usability.
+                  Experienced professional with a strong background in security management, customer service, and team leadership. Skilled in digital marketing, web development, and data analysis with a focus on creating meaningful insights and user experiences.
                 </p>
                 <p className="text-foreground/80">
-                  My approach combines strategic thinking with creative problem-solving, resulting in digital solutions that not only meet technical requirements but also engage and delight users. I thrive in collaborative environments and am constantly exploring new technologies to enhance my digital alchemy.
+                  Committed to continuous learning and skill development with certifications in cybersecurity, business intelligence, and data analytics. Bilingual in English and Spanish with proven ability to manage teams effectively and deliver exceptional service in high-profile environments.
                 </p>
               </div>
             </div>

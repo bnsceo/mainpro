@@ -1,4 +1,3 @@
-
 import { CheckCircle, Code, Globe, Layers } from "lucide-react";
 
 export const NAV_LINKS = [
@@ -111,60 +110,51 @@ export const FILTER_CATEGORIES = [
 export const RESUME_SECTIONS = {
   education: [
     {
-      title: "Master of Computer Science",
-      organization: "University of Technology",
-      period: "2018 - 2020",
-      description: "Specialized in Human-Computer Interaction and Web Technologies. Graduated with honors.",
-    },
-    {
-      title: "Bachelor of Design",
-      organization: "Design Institute",
-      period: "2014 - 2018",
-      description: "Focused on Digital Design and User Experience. Dean's list for academic excellence.",
-    },
+      title: "CUNY Bronx Community College",
+      organization: "Bronx, NY",
+      period: "2013 - Continuing Education",
+      description: "Strong problem-solving skills, developed through business case studies and analytical coursework, enabling effective resolution of customer issues and store operational challenges."
+    }
   ],
   experience: [
     {
-      title: "Senior Front-End Developer",
-      organization: "Tech Innovations Inc.",
-      period: "2022 - Present",
-      description: "Lead the front-end development team in creating responsive and accessible web applications. Implemented modern front-end architecture and performance optimization strategies.",
-    },
-    {
-      title: "UI/UX Developer",
-      organization: "Creative Solutions",
-      period: "2020 - 2022",
-      description: "Designed and developed user interfaces for various client projects. Collaborated with design and backend teams to ensure cohesive product development.",
-    },
-    {
-      title: "Web Development Intern",
-      organization: "StartUp Hub",
-      period: "2019 - 2020",
-      description: "Assisted in the development of web interfaces. Learned and applied new web technologies in a fast-paced environment.",
-    },
+      title: "Shift Supervisor",
+      organization: "Allied Universal",
+      period: "March 2020 - May 2024",
+      description: "Provided exceptional customer service at a high-profile financial institution and luxury mall. Managed a team of security personnel, providing training and guidance on best practices. Maintained safe environment and handled cash transactions and inventory management."
+    }
   ],
   skills: [
-    "HTML5/CSS3", "JavaScript (ES6+)", "TypeScript", "React", "NextJS", 
-    "Node.js", "Tailwind CSS", "SASS/SCSS", "Git/GitHub", "Responsive Design", 
-    "UI/UX Design", "Figma", "Sketch", "RESTful APIs", "GraphQL"
+    "Cybersecurity Awareness", "Analytical Skills", "Writing Skills", "Teamwork", 
+    "Team Management", "Reporting", "Front-End Web Development", "HTML", "CSS",
+    "JavaScript", "React Native", "Responsive Web Design", "Digital Marketing Strategy",
+    "Data Analysis", "Business Intelligence", "Data Visualization", "Statistical Analysis", 
+    "Dashboard Development"
   ],
   certifications: [
     {
-      title: "Advanced Front-End Development",
-      organization: "Frontend Masters",
+      title: "Digital Marketing & E-commerce",
+      organization: "Google",
       year: "2023",
     },
     {
-      title: "UI/UX Design Principles",
-      organization: "Design+Code",
+      title: "Business Intelligence",
+      organization: "Google",
+      year: "2023",
+    },
+    {
+      title: "Data Analytics",
+      organization: "Google",
       year: "2022",
     },
     {
-      title: "React Certification",
-      organization: "Meta",
-      year: "2021",
-    },
+      title: "Cybersecurity with Python",
+      organization: "Coursera",
+      year: "2022",
+    }
   ],
+  languages: ["English", "Spanish"],
+  awards: ["Employer of the year (2021)"]
 };
 
 export const SERVICES = [
