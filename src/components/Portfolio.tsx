@@ -1,21 +1,30 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useInView } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 import { PORTFOLIO_PROJECTS, FILTER_CATEGORIES } from "@/lib/constants";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Github, Code, Eye } from "lucide-react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 const Portfolio = () => {
   const { ref, isInView } = useInView({}, true);
   const [filter, setFilter] = useState("all");
   const [selectedProject, setSelectedProject] = useState<null | typeof PORTFOLIO_PROJECTS[0]>(null);
+  const [activeTab, setActiveTab] = useState("overview");
 
   const filteredProjects = PORTFOLIO_PROJECTS.filter(
     (project) => filter === "all" || project.filter === filter
   );
+
+  useEffect(() => {
+    // Reset active tab when project changes
+    if (selectedProject) {
+      setActiveTab("overview");
+    }
+  }, [selectedProject]);
 
   return (
     <section
@@ -54,7 +63,7 @@ const Portfolio = () => {
             <div
               key={project.id}
               className={cn(
-                "portfolio-item transition-all duration-700",
+                "portfolio-item group transition-all duration-700",
                 isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
               )}
               style={{ transitionDelay: `${200 + index * 100}ms` }}
@@ -69,6 +78,11 @@ const Portfolio = () => {
               <div className="portfolio-overlay">
                 <h3 className="text-xl font-bold text-white mb-1">{project.title}</h3>
                 <p className="text-secondary">{project.category}</p>
+                <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <Button size="sm" variant="secondary" className="bg-background/20 backdrop-blur-sm">
+                    View Details
+                  </Button>
+                </div>
               </div>
             </div>
           ))}
@@ -81,9 +95,9 @@ const Portfolio = () => {
         )}
       </div>
 
-      {/* Project details modal */}
+      {/* Enhanced project details modal with tabs */}
       <Dialog open={!!selectedProject} onOpenChange={(open) => !open && setSelectedProject(null)}>
-        <DialogContent className="max-w-3xl bg-background/95 backdrop-blur-lg border-none">
+        <DialogContent className="max-w-4xl bg-background/95 backdrop-blur-lg border-none">
           {selectedProject && (
             <>
               <DialogHeader>
@@ -101,26 +115,109 @@ const Portfolio = () => {
                 />
               </div>
               
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-semibold mb-2">Overview</h3>
-                  <p className="text-foreground/80">{selectedProject.description}</p>
-                </div>
+              <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+                <TabsList className="w-full grid grid-cols-3">
+                  <TabsTrigger value="overview">Overview</TabsTrigger>
+                  <TabsTrigger value="features">Features</TabsTrigger>
+                  <TabsTrigger value="code">Code</TabsTrigger>
+                </TabsList>
                 
-                <div>
-                  <h3 className="text-lg font-semibold mb-2">Technologies</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedProject.technologies.map((tech, index) => (
-                      <Badge key={index} className="bg-primary/20 hover:bg-primary/30 text-foreground">
-                        {tech}
-                      </Badge>
-                    ))}
+                <TabsContent value="overview" className="space-y-4 mt-4">
+                  <div>
+                    <h3 className="text-lg font-semibold mb-2">Project Description</h3>
+                    <p className="text-foreground/80">{selectedProject.description}</p>
                   </div>
-                </div>
+                  
+                  <div>
+                    <h3 className="text-lg font-semibold mb-2">Technologies</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedProject.technologies.map((tech, index) => (
+                        <Badge key={index} className="bg-primary/20 hover:bg-primary/30 text-foreground">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                </TabsContent>
                 
-                <Button asChild className="w-full sm:w-auto">
-                  <a href={selectedProject.link} target="_blank" rel="noopener noreferrer" className="flex items-center">
-                    View Project <ExternalLink className="ml-2 h-4 w-4" />
+                <TabsContent value="features" className="space-y-4 mt-4">
+                  <h3 className="text-lg font-semibold mb-2">Key Features</h3>
+                  <ul className="list-disc pl-5 space-y-2">
+                    <li>Responsive design for all device sizes</li>
+                    <li>Interactive user interface with modern animations</li>
+                    <li>Optimized performance with lazy loading</li>
+                    <li>Cross-browser compatibility</li>
+                    <li>Accessible according to WCAG guidelines</li>
+                  </ul>
+                </TabsContent>
+                
+                <TabsContent value="code" className="mt-4">
+                  <div className="rounded-md bg-black/90 p-4 font-mono text-xs sm:text-sm text-green-400 overflow-x-auto">
+                    <pre className="whitespace-pre-wrap">
+                      {`// Sample code from ${selectedProject.title}
+import React, { useState, useEffect } from 'react';
+
+function ${selectedProject.title.replace(/\s+/g, '')}() {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    // Simulate API call
+    const fetchData = async () => {
+      try {
+        // Fetch data from API
+        const response = await fetch('/api/data');
+        const result = await response.json();
+        
+        setData(result);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      }
+    };
+    
+    fetchData();
+  }, []);
+  
+  return (
+    <div className="container">
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <div className="data-grid">
+          {data.map((item) => (
+            <div key={item.id} className="data-card">
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}`}
+                    </pre>
+                  </div>
+                </TabsContent>
+              </Tabs>
+              
+              <div className="flex flex-col sm:flex-row gap-3 mt-6">
+                <Button asChild className="flex-1" variant="default">
+                  <a href={selectedProject.link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
+                    <Eye className="mr-2 h-4 w-4" /> Live Demo
+                  </a>
+                </Button>
+                
+                <Button asChild className="flex-1" variant="outline">
+                  <a href="#" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
+                    <Github className="mr-2 h-4 w-4" /> View Repository
+                  </a>
+                </Button>
+                
+                <Button asChild className="flex-1" variant="secondary">
+                  <a href="#" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
+                    <Code className="mr-2 h-4 w-4" /> Technical Details
                   </a>
                 </Button>
               </div>

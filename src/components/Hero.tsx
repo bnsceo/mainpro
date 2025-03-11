@@ -21,6 +21,11 @@ const Hero = () => {
     }
   };
 
+  useEffect(() => {
+    // Debug log to check if component is rendering
+    console.log("Hero component rendered");
+  }, []);
+
   return (
     <section
       id="hero"
