@@ -111,74 +111,82 @@ export const FILTER_CATEGORIES = [
 export const RESUME_SECTIONS = {
   education: [
     {
-      title: "Continuing Education",
-      organization: "CUNY Bronx Community College, Bronx, NY",
-      period: "2013 - Present",
-      description: "Strong problem-solving skills developed through business case studies and analytical coursework, enabling effective resolution of customer issues and operational challenges.",
+      title: "Master of Computer Science",
+      organization: "University of Technology",
+      period: "2018 - 2020",
+      description: "Specialized in Human-Computer Interaction and Web Technologies. Graduated with honors.",
+    },
+    {
+      title: "Bachelor of Design",
+      organization: "Design Institute",
+      period: "2014 - 2018",
+      description: "Focused on Digital Design and User Experience. Dean's list for academic excellence.",
     },
   ],
   experience: [
     {
-      title: "Shift Supervisor",
-      organization: "Allied Universal, Orlando, FL",
-      period: "March 2020 - May 2024",
-      description: "Managed a team of security personnel, providing training and guidance on customer service best practices and communication techniques. Maintained a safe and organized environment, contributing to a positive customer experience at a high-profile financial institution and luxury mall. Handled cash transactions and managed inventory of security equipment, ensuring accurate record-keeping and efficient resource allocation.",
+      title: "Senior Front-End Developer",
+      organization: "Tech Innovations Inc.",
+      period: "2022 - Present",
+      description: "Lead the front-end development team in creating responsive and accessible web applications. Implemented modern front-end architecture and performance optimization strategies.",
+    },
+    {
+      title: "UI/UX Developer",
+      organization: "Creative Solutions",
+      period: "2020 - 2022",
+      description: "Designed and developed user interfaces for various client projects. Collaborated with design and backend teams to ensure cohesive product development.",
+    },
+    {
+      title: "Web Development Intern",
+      organization: "StartUp Hub",
+      period: "2019 - 2020",
+      description: "Assisted in the development of web interfaces. Learned and applied new web technologies in a fast-paced environment.",
     },
   ],
   skills: [
-    "Cybersecurity Awareness", "Analytical Skills", "Writing Skills", "Teamwork", "Team Management", "Reporting",
-    "Front-End Web Development", "HTML", "CSS", "JavaScript", "React Native", "Responsive Web Design", "Digital Marketing Strategy",
-    "Data Analysis & Business Intelligence", "Data Visualization", "Statistical Analysis", "Dashboard Development"
+    "HTML5/CSS3", "JavaScript (ES6+)", "TypeScript", "React", "NextJS", 
+    "Node.js", "Tailwind CSS", "SASS/SCSS", "Git/GitHub", "Responsive Design", 
+    "UI/UX Design", "Figma", "Sketch", "RESTful APIs", "GraphQL"
   ],
   certifications: [
-    { title: "Digital Marketing & E-commerce", organization: "Google", year: "2024" },
-    { title: "Business Intelligence", organization: "Google", year: "2024" },
-    { title: "Data Analytics", organization: "Google", year: "2024" },
-    { title: "Automate Cybersecurity Tasks with Python", organization: "Google", year: "2024" },
-    { title: "Operating Systems: Overview, Administration, and Security", organization: "Google", year: "2024" },
-    { title: "Google Digital Marketing & E-commerce", organization: "Google", year: "2024" },
-    { title: "Satisfaction Guaranteed: Develop Customer Loyalty Online", organization: "Google", year: "2024" },
-    { title: "Google Business Intelligence", organization: "Google", year: "2024" },
-    { title: "Decisions, Decisions: Dashboards and Reports", organization: "Google", year: "2024" },
-    { title: "Create a Resume and Cover Letter with Google Docs", organization: "Google", year: "2024" },
-    { title: "Cybersecurity Case Studies and Capstone Project", organization: "Google", year: "2024" },
-    { title: "Hiring Practices", organization: "Google", year: "2024" },
-    { title: "Interviewing Best Practices", organization: "Google", year: "2024" },
-    { title: "HTML, CSS, and JavaScript for Web Developers", organization: "Google", year: "2024" },
-    { title: "Managing Employee Performance", organization: "Google", year: "2024" },
-    { title: "Fundamentals of Data Governance", organization: "Edureka", year: "2024" },
-    { title: "Google Data Analytics", organization: "Google", year: "2024" },
-    { title: "Google Data Analytics Capstone: Complete a Case Study", organization: "Google", year: "2024" },
-    { title: "AI For Everyone", organization: "Coursera", year: "2024" },
-    { title: "Code Free Data Science", organization: "University of California San Diego", year: "2024" },
-    { title: "Getting Started with Microsoft Excel", organization: "Coursera", year: "2024" },
-    { title: "Rethink Possibilities", organization: "Coursera", year: "2024" },
-  ],
-  awards: [
-    { title: "Employer of the Year", organization: "Allied Universal", year: "2021" },
+    {
+      title: "Advanced Front-End Development",
+      organization: "Frontend Masters",
+      year: "2023",
+    },
+    {
+      title: "UI/UX Design Principles",
+      organization: "Design+Code",
+      year: "2022",
+    },
+    {
+      title: "React Certification",
+      organization: "Meta",
+      year: "2021",
+    },
   ],
 };
 
 export const SERVICES = [
   {
-    title: "Cybersecurity Awareness",
-    description: "Providing insights on best security practices to safeguard digital assets.",
-    icon: Shield,
+    title: "Web Development",
+    description: "Creating responsive and accessible websites with modern technologies",
+    icon: Globe,
   },
   {
-    title: "Data Analysis & Business Intelligence",
-    description: "Leveraging data visualization and statistical analysis for business decision-making.",
-    icon: ChartBar,
-  },
-  {
-    title: "Front-End Web Development",
-    description: "Developing responsive web applications with modern technologies.",
+    title: "Front-end Engineering",
+    description: "Building complex interactive applications with React and TypeScript",
     icon: Code,
   },
   {
-    title: "Digital Marketing Strategy",
-    description: "Optimizing online presence through effective marketing techniques.",
-    icon: Globe,
+    title: "UI/UX Design",
+    description: "Designing intuitive and visually appealing user interfaces",
+    icon: Layers,
+  },
+  {
+    title: "Performance Optimization",
+    description: "Improving website speed and user experience through optimization",
+    icon: CheckCircle,
   },
 ];
 
