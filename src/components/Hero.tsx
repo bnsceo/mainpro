@@ -1,5 +1,5 @@
 
-import { useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { useParticleCanvas } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 import { useInView } from "@/lib/animations";
@@ -14,16 +14,16 @@ const Hero = () => {
   
   useParticleCanvas(canvasRef, 'rgb(255, 255, 255)', 80);
 
+  useEffect(() => {
+    console.log("Hero component rendered");
+  }, []);
+
   const scrollToNext = () => {
     const aboutSection = document.getElementById("about");
     if (aboutSection) {
       aboutSection.scrollIntoView({ behavior: "smooth" });
     }
   };
-
-  useEffect(() => {
-    console.log("Hero component rendered");
-  }, []);
 
   return (
     <section
@@ -82,12 +82,12 @@ const Hero = () => {
               isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
             )}
           >
-            <div className="relative w-full max-w-[500px] h-[400px]">
+            <div className="relative w-full max-w-[500px] h-[400px] flex items-center justify-center">
               {/* Decorative elements */}
               <div className="absolute top-0 left-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-pulse-soft"></div>
               <div className="absolute bottom-0 right-0 w-64 h-64 bg-secondary/20 rounded-full blur-3xl animate-pulse-soft" style={{ animationDelay: "2s" }}></div>
               
-              {/* Cyberpunk Terminal - making it visible on all screen sizes */}
+              {/* Cyberpunk Terminal */}
               <CyberpunkTerminal />
             </div>
           </div>

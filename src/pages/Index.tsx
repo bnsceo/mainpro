@@ -1,5 +1,5 @@
 
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -10,8 +10,11 @@ import Footer from "@/components/Footer";
 import BackButton from "@/components/BackButton";
 
 const Index = () => {
+  console.log("Index component rendering");
+  
   useEffect(() => {
     document.title = "Digital Alchemist Portfolio";
+    console.log("Index component mounted");
   }, []);
 
   return (
