@@ -3,6 +3,6 @@
 export * from './useInView';
 export * from './useParticleCanvas';
 export * from './useConnectionCanvas';
-export * from './useStickFigureAnimation';
+export * from './useStickFigureAnimation'; // Keeping for backward compatibility
 export * from './useInteractiveParticles';
 export * from './useTypewriter';

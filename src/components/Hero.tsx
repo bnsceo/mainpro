@@ -1,21 +1,18 @@
 
 import { useRef, useEffect } from "react";
-import { useParticleCanvas, useStickFigureAnimation } from "@/lib/animations";
+import { useParticleCanvas } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 import { useInView } from "@/lib/animations";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowDown } from "lucide-react";
+import CyberpunkTerminal from "./CyberpunkTerminal";
 
 const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const stickFigureCanvasRef = useRef<HTMLCanvasElement>(null);
   const { ref, isInView } = useInView({}, true);
   
   // Initialize particle animation with updated comment
   useParticleCanvas(canvasRef, 'rgb(255, 255, 255)', 80);
-  
-  // Initialize stick figure animation
-  useStickFigureAnimation(stickFigureCanvasRef);
 
   const scrollToNext = () => {
     const aboutSection = document.getElementById("about");
@@ -46,13 +43,6 @@ const Hero = () => {
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
               Digital <span className="highlight">Alchemist</span>
             </h1>
-            
-            <div className="relative h-20">
-              <canvas 
-                ref={stickFigureCanvasRef} 
-                className="w-full h-full"
-              />
-            </div>
             
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 mt-4">
               <Button 
@@ -86,15 +76,8 @@ const Hero = () => {
               <div className="absolute top-0 left-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-pulse-soft"></div>
               <div className="absolute bottom-0 right-0 w-64 h-64 bg-secondary/20 rounded-full blur-3xl animate-pulse-soft" style={{ animationDelay: "2s" }}></div>
               
-              {/* Could be replaced with a 3D model or illustration */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative glass-card w-80 h-80 rounded-2xl overflow-hidden shadow-2xl">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-secondary/30"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-4xl font-bold">DA</div>
-                  </div>
-                </div>
-              </div>
+              {/* Cyberpunk Terminal - replacing the stick figure */}
+              <CyberpunkTerminal />
             </div>
           </div>
         </div>

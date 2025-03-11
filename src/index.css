@@ -185,4 +185,88 @@
   .animated-bg {
     @apply bg-gradient-to-br from-[#1a1f2c] to-[#2d2b42] bg-[length:200%_200%] animate-gradient-flow;
   }
+
+  /* Cyberpunk Terminal Styles */
+  .cyberpunk-terminal {
+    box-shadow: 0 0 20px 0 rgba(123, 104, 238, 0.3), 0 0 60px 0 rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+  }
+
+  .cyberpunk-terminal:hover {
+    box-shadow: 0 0 30px 0 rgba(123, 104, 238, 0.4), 0 0 80px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .cyberpunk-terminal:before {
+    content: '';
+    @apply absolute inset-0 z-[-1];
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 1px,
+      rgba(123, 104, 238, 0.03) 1px,
+      rgba(123, 104, 238, 0.03) 2px
+    );
+    pointer-events: none;
+  }
+
+  .typing-indicator {
+    @apply inline-block relative;
+  }
+
+  .typing-indicator:after {
+    content: '';
+    @apply inline-block w-1.5 h-4 bg-secondary;
+    animation: blink 1s step-start infinite;
+    vertical-align: text-bottom;
+    margin-left: 4px;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  .glitch {
+    animation: glitch 0.3s linear;
+  }
+
+  @keyframes glitch {
+    0% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translate(-2px, 2px);
+    }
+    40% {
+      transform: translate(-2px, -2px);
+    }
+    60% {
+      transform: translate(2px, 2px);
+    }
+    80% {
+      transform: translate(2px, -2px);
+    }
+    100% {
+      transform: translate(0);
+    }
+  }
+
+  .terminal-fade-out {
+    animation: fadeOut 1.5s forwards;
+    pointer-events: none;
+  }
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    70% {
+      opacity: 0.5;
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+  }
 }
