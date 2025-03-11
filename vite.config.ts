@@ -16,7 +16,7 @@ export default defineConfig(({ mode }) => ({
       "localhost"
     ],
   },
-  base: "/interactive-resume-laboratory/", // Base path for GitHub Pages
+  base: mode === 'production' ? "/interactive-resume-laboratory/" : "/",
   plugins: [
     react(),
     mode === 'development' &&
