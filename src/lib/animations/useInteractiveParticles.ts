@@ -1,9 +1,10 @@
+
 import { useEffect } from 'react';
 
 // Interactive particles system
-export const useInteractiveParticles = (canvasRef: React.RefObject<HTMLCanvasElement>) => {
+export const useInteractiveParticles = (canvasRef: React.RefObject<HTMLCanvasElement>, isActive: boolean = true) => {
   useEffect(() => {
-    if (!canvasRef.current) return;
+    if (!canvasRef.current || !isActive) return;
 
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
@@ -144,10 +145,14 @@ export const useInteractiveParticles = (canvasRef: React.RefObject<HTMLCanvasEle
       requestAnimationFrame(animate);
     };
 
-    animate();
+    // Store animation frame ID for cleanup
+    let animationId = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      canvas.removeEventListener('mousemove', () => {});
+      canvas.removeEventListener('mouseleave', () => {});
+      cancelAnimationFrame(animationId);
     };
-  }, [canvasRef]);
+  }, [canvasRef, isActive]);
 };

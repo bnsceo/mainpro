@@ -1,5 +1,5 @@
 
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { useInView, useInteractiveParticles } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 import { TIMELINE_DATA, SKILLS_DATA, SERVICES } from "@/lib/constants";
@@ -9,12 +9,8 @@ const About = () => {
   const { ref, isInView } = useInView({}, true);
   const interactiveCanvasRef = useRef<HTMLCanvasElement>(null);
   
-  // Initialize interactive particles system when in view
-  useEffect(() => {
-    if (isInView && interactiveCanvasRef.current) {
-      useInteractiveParticles(interactiveCanvasRef);
-    }
-  }, [isInView]);
+  // Call the hook at component level, passing isInView to activate/deactivate
+  useInteractiveParticles(interactiveCanvasRef, isInView);
 
   return (
     <section
