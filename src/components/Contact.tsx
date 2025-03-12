@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { Send, MessageSquare } from "lucide-react";
+import { sendTextMessage } from "@/services/TextMessageService";
 
 const Contact = () => {
   const { ref, isInView } = useInView({}, true);
@@ -57,31 +58,40 @@ const Contact = () => {
     }, 1500);
   };
   
-  const handleAssistantSubmit = (e: React.FormEvent) => {
+  const handleAssistantSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!assistantQuery.trim()) return;
     
-    // Add user message
+    // Add user message to chat
     setChatMessages((prev) => [...prev, { text: assistantQuery, isUser: true }]);
     setAssistantLoading(true);
     
-    // Simulate AI response
-    setTimeout(() => {
-      let response = "I'm processing your request and will get back to you shortly.";
+    try {
+      // Send text message with the user's query
+      const messageText = `Question from website: ${assistantQuery}`;
+      await sendTextMessage(messageText);
       
-      // Simple keyword-based responses
-      if (assistantQuery.toLowerCase().includes("portfolio")) {
-        response = "My portfolio showcases various projects ranging from web applications to interactive designs. Feel free to check the Transformation section!";
-      } else if (assistantQuery.toLowerCase().includes("contact") || assistantQuery.toLowerCase().includes("hire")) {
-        response = "You can contact me directly through the form on this page, or connect with me on social media. I'm currently available for freelance work and collaborations.";
-      } else if (assistantQuery.toLowerCase().includes("skill") || assistantQuery.toLowerCase().includes("technolog")) {
-        response = "I specialize in front-end technologies including React, TypeScript, and modern CSS. I also have experience with UI/UX design principles and create responsive, accessible web applications.";
-      }
+      // Add response message
+      setChatMessages((prev) => [
+        ...prev, 
+        { 
+          text: "Thanks for your message! I've received it and will respond shortly.", 
+          isUser: false 
+        }
+      ]);
       
-      setChatMessages((prev) => [...prev, { text: response, isUser: false }]);
-      setAssistantLoading(false);
+      // Clear input
       setAssistantQuery("");
-    }, 1500);
+    } catch (error) {
+      console.error("Error sending message:", error);
+      toast({
+        title: "Error",
+        description: "Unable to send your message. Please try again later.",
+        variant: "destructive"
+      });
+    } finally {
+      setAssistantLoading(false);
+    }
   };
   
   return (

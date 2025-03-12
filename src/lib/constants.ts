@@ -9,11 +9,11 @@ export const NAV_LINKS = [
 ];
 
 export const TIMELINE_DATA = [
-  { year: 2020, event: "Started learning web development" },
-  { year: 2021, event: "First freelance project completed" },
-  { year: 2022, event: "Started contributing to open source" },
-  { year: 2023, event: "Launched personal portfolio" },
-  { year: 2024, event: "Advanced front-end development" },
+  { year: 2020, event: "Explored entrepreneurship and business opportunities" },
+  { year: 2021, event: "Worked in security while researching business models" },
+  { year: 2022, event: "Started learning coding and data analytics fundamentals" },
+  { year: 2023, event: "Expanded skills in data analytics and business automation" },
+  { year: 2024, event: "Earned certifications, built a professional network, and pursued a career in data analytics" },
 ];
 
 export const SKILLS_DATA = [
