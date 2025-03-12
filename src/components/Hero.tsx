@@ -46,13 +46,16 @@ const Hero = () => {
           >
             <div className="flex flex-col items-center lg:items-start space-y-6">
               <Avatar className="w-32 h-32 border-4 border-primary/20 shadow-xl shadow-primary/20">
-                <AvatarImage src="https://github.com/shadcn.png" alt="Profile" />
-                <AvatarFallback className="bg-primary/5 text-2xl font-bold">DA</AvatarFallback>
+                <AvatarImage src="https://github.com/shadcn.png" alt="Anderson Paulino" />
+                <AvatarFallback className="bg-primary/5 text-2xl font-bold">AP</AvatarFallback>
               </Avatar>
               
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-                Digital <span className="highlight">Alchemist</span>
-              </h1>
+              <div>
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                  Anderson <span className="highlight">Paulino</span>
+                </h1>
+                <p className="text-xl mt-2 text-foreground/80">Digital Alchemist</p>
+              </div>
             </div>
             
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 mt-4">

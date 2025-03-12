@@ -9,12 +9,17 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+// Get base URL to handle GitHub Pages deployment
+const getBasename = () => {
+  return import.meta.env.MODE === 'production' ? '/interactive-resume-laboratory' : '/';
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter basename="/">
+      <BrowserRouter basename={getBasename()}>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/project/:id" element={<Index />} />
