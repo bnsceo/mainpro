@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useParticleCanvas } from "@/lib/animations";
 import { cn } from "@/lib/utils";
@@ -15,13 +14,118 @@ const Hero: React.FC = () => {
   // Initialize particle canvas after component mounts
   React.useEffect(() => {
     const canvas = canvasRef.current;
+    let cleanup: (() => void) | undefined;
+    
     if (canvas) {
-      const cleanup = useParticleCanvas(canvasRef, 'rgb(255, 255, 255)', 80);
-      return () => {
-        if (cleanup) cleanup();
+      // Call the hook function inside the component body, not inside useEffect
+      const initParticles = () => {
+        const particles = useParticleCanvas(canvasRef, 'rgb(255, 255, 255)', 80);
+        return particles;
       };
+      
+      // Instead, use the canvas directly
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        // Set canvas dimensions
+        const handleResize = () => {
+          if (!canvas || !canvas.parentElement) return;
+          canvas.width = canvas.parentElement.offsetWidth;
+          canvas.height = canvas.parentElement.offsetHeight;
+        };
+        
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        
+        // Create particles
+        const particles: any[] = [];
+        for (let i = 0; i < 80; i++) {
+          const radius = Math.random() * 2 + 1;
+          const x = Math.random() * (canvas.width - radius * 2) + radius;
+          const y = Math.random() * (canvas.height - radius * 2) + radius;
+          const velocity = {
+            x: (Math.random() - 0.5) * 1,
+            y: (Math.random() - 0.5) * 1,
+          };
+          const alpha = Math.random() * 0.5 + 0.1;
+          const particleColor = `rgba(255, 255, 255, ${alpha})`;
+          
+          particles.push(new Particle(x, y, radius, particleColor, velocity));
+        }
+        
+        // Animation loop
+        let animationFrameId: number;
+        const animate = () => {
+          animationFrameId = requestAnimationFrame(animate);
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          
+          particles.forEach((particle) => {
+            particle.update();
+          });
+        };
+        
+        animate();
+        
+        // Set cleanup function
+        cleanup = () => {
+          window.removeEventListener('resize', handleResize);
+          cancelAnimationFrame(animationFrameId);
+        };
+      }
     }
+    
+    // Return cleanup function
+    return () => {
+      if (cleanup) cleanup();
+    };
   }, []);
+
+  // Particle class definition
+  class Particle {
+    x: number;
+    y: number;
+    radius: number;
+    color: string;
+    velocity: { x: number; y: number };
+
+    constructor(x: number, y: number, radius: number, color: string, velocity: { x: number; y: number }) {
+      this.x = x;
+      this.y = y;
+      this.radius = radius;
+      this.color = color;
+      this.velocity = velocity;
+    }
+
+    draw() {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+      
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+    }
+
+    update() {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      
+      this.x += this.velocity.x;
+      this.y += this.velocity.y;
+
+      // Bounce off edges
+      if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+        this.velocity.x = -this.velocity.x;
+      }
+
+      if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
+        this.velocity.y = -this.velocity.y;
+      }
+
+      this.draw();
+    }
+  }
 
   const scrollToNext = () => {
     const aboutSection = document.getElementById("about");
