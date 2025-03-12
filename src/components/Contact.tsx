@@ -119,10 +119,7 @@ const Contact = () => {
                     Have a project in mind or want to discuss a potential collaboration? I'd love to hear from you.
                   </p>
                   <div className="flex flex-col space-y-4 items-center">
-                    <div className="bg-muted/40 p-4 rounded-lg">
-                      <p className="font-medium">Email</p>
-                      <p className="text-foreground/70">contact@digitalalchemist.com</p>
-                    </div>
+                    
                     
                   </div>
                 </div>
