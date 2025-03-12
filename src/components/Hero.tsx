@@ -12,11 +12,15 @@ const Hero: React.FC = () => {
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
   const { ref, isInView } = useInView({}, true);
   
+  // Initialize particle canvas after component mounts
   React.useEffect(() => {
-    if (canvasRef.current) {
-      useParticleCanvas(canvasRef, 'rgb(255, 255, 255)', 80);
+    const canvas = canvasRef.current;
+    if (canvas) {
+      const cleanup = useParticleCanvas(canvasRef, 'rgb(255, 255, 255)', 80);
+      return () => {
+        if (cleanup) cleanup();
+      };
     }
-    console.log("Hero component rendered");
   }, []);
 
   const scrollToNext = () => {
