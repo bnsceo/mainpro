@@ -1,5 +1,5 @@
 
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import { useParticleCanvas } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 import { useInView } from "@/lib/animations";
@@ -8,13 +8,14 @@ import { ArrowRight, ArrowDown } from "lucide-react";
 import CyberpunkTerminal from "./CyberpunkTerminal";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-const Hero = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+const Hero: React.FC = () => {
+  const canvasRef = React.useRef<HTMLCanvasElement>(null);
   const { ref, isInView } = useInView({}, true);
   
-  useParticleCanvas(canvasRef, 'rgb(255, 255, 255)', 80);
-
-  useEffect(() => {
+  React.useEffect(() => {
+    if (canvasRef.current) {
+      useParticleCanvas(canvasRef, 'rgb(255, 255, 255)', 80);
+    }
     console.log("Hero component rendered");
   }, []);
 

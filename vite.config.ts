@@ -36,5 +36,6 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     target: 'es2020',
+    assetsInlineLimit: 0, // Ensures all assets are properly handled as external files
   }
 }));

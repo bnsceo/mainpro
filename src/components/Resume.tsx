@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Download, Printer } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { toast } from "@/components/ui/use-toast";
 
 const Resume = () => {
   const { ref, isInView } = useInView({}, true);
@@ -16,13 +17,23 @@ const Resume = () => {
   };
 
   const handleDownload = () => {
-    // Simulate download - in a real app, this would link to a PDF file
+    // Get the base URL for proper path handling in GitHub Pages
+    const baseUrl = import.meta.env.MODE === 'production' 
+      ? '/interactive-resume-laboratory' 
+      : '';
+      
+    // Create download link to the PDF in the public folder
     const link = document.createElement("a");
-    link.href = "#";
-    link.download = "resume.pdf";
+    link.href = `${baseUrl}/resume.pdf`;
+    link.download = "anderson_paulino_resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    
+    toast({
+      title: "Resume Downloaded",
+      description: "Thank you for your interest in my work!"
+    });
   };
 
   return (
