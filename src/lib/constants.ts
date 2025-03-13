@@ -38,6 +38,16 @@ export const DATA_STREAM = [
 export const PORTFOLIO_PROJECTS = [
   {
     id: 1,
+    title: "Trade Game",
+    category: "Game Development",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+    description: "An interactive trading simulation game where players can buy low and sell high to maximize profits. Built with vanilla JavaScript and featuring dynamic market simulations.",
+    technologies: ["JavaScript", "HTML Canvas", "CSS", "Algorithm Design"],
+    link: "https://anderson-s-projects.github.io/Trade-Game/",
+    filter: "interactive",
+  },
+  {
+    id: 2,
     title: "Interactive Dashboard",
     category: "Web Development",
     image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
@@ -47,7 +57,7 @@ export const PORTFOLIO_PROJECTS = [
     filter: "web",
   },
   {
-    id: 2,
+    id: 3,
     title: "3D Product Showcase",
     category: "Interactive Design",
     image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
@@ -57,7 +67,7 @@ export const PORTFOLIO_PROJECTS = [
     filter: "interactive",
   },
   {
-    id: 3,
+    id: 4,
     title: "Animated Landing Page",
     category: "Animation",
     image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
@@ -67,7 +77,7 @@ export const PORTFOLIO_PROJECTS = [
     filter: "animation",
   },
   {
-    id: 4,
+    id: 5,
     title: "E-commerce Platform",
     category: "Web Development",
     image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
@@ -77,7 +87,7 @@ export const PORTFOLIO_PROJECTS = [
     filter: "web",
   },
   {
-    id: 5,
+    id: 6,
     title: "Data Visualization Tool",
     category: "Data Visualization",
     image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
@@ -85,16 +95,6 @@ export const PORTFOLIO_PROJECTS = [
     technologies: ["D3.js", "SVG", "TypeScript", "REST API"],
     link: "#",
     filter: "data",
-  },
-  {
-    id: 6,
-    title: "Mobile App UI Kit",
-    category: "UI Design",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
-    description: "A comprehensive UI kit for mobile applications with over 100 components.",
-    technologies: ["Figma", "Sketch", "Adobe XD"],
-    link: "#",
-    filter: "design",
   },
 ];
 
@@ -105,6 +105,7 @@ export const FILTER_CATEGORIES = [
   { label: "Animation", value: "animation" },
   { label: "Data Visualization", value: "data" },
   { label: "UI Design", value: "design" },
+  { label: "Game Development", value: "game" },
 ];
 
 export const RESUME_SECTIONS = {

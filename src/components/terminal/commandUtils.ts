@@ -61,24 +61,25 @@ export function processCommand(cmd: string): string | string[] {
     switch (projectNumber) {
       case 1:
         return [
-          "🚀 Truck Dispatching Platform (2024)",
-          "A comprehensive logistics solution for truck fleet management",
-          "Technologies: React, Node.js, MongoDB, Google Maps API",
-          "Role: Lead Developer",
+          "🎮 Trade Game (2024)",
+          "An interactive trading simulation game to maximize profits",
+          "Technologies: JavaScript, HTML Canvas, CSS, Algorithm Design",
+          "Role: Game Developer",
+          "Link: https://anderson-s-projects.github.io/Trade-Game/"
         ];
       case 2:
         return [
-          "📊 Data Visualization Dashboard (2023)",
-          "Interactive analytics platform for business intelligence",
-          "Technologies: D3.js, React, TypeScript, REST API",
-          "Role: Frontend Developer & Data Visualization Specialist",
+          "📊 Interactive Dashboard (2023)",
+          "Dynamic dashboard with real-time data visualization for business analytics",
+          "Technologies: React, D3.js, CSS Grid, REST API",
+          "Role: Frontend Developer",
         ];
       case 3:
         return [
-          "🤖 AI-Powered Chat Interface (2023)",
-          "Natural language processing application for customer support",
-          "Technologies: Python, TensorFlow, React, WebSockets",
-          "Role: Full Stack Developer",
+          "🚀 3D Product Showcase (2023)",
+          "Immersive 3D showcase for product exploration with smooth animations",
+          "Technologies: Three.js, GSAP, WebGL, JavaScript",
+          "Role: Interactive Developer",
         ];
       default:
         return `Project ${projectNumber} not found. Available projects are numbered 1-3.`;
@@ -94,13 +95,14 @@ export function processCommand(cmd: string): string | string[] {
         "Frontend: React, TypeScript, Tailwind CSS",
         "Backend: Node.js, Python, SQL",
         "Data: Analytics, Visualization, Machine Learning",
-        "Tools: Git, Docker, AWS"
+        "Tools: Git, Docker, AWS",
+        "Game Dev: JavaScript, HTML Canvas"
       ];
     case 'projects --latest':
       return [
-        "🚀 Truck Dispatching Platform (2024)",
-        "📊 Data Visualization Dashboard (2023)",
-        "🤖 AI-Powered Chat Interface (2023)",
+        "🎮 Trade Game (2024)",
+        "📊 Interactive Dashboard (2023)",
+        "🚀 3D Product Showcase (2023)",
         "Type 'projects info [number]' for details"
       ];
     case 'contact --show':
@@ -126,6 +128,7 @@ export function processCommand(cmd: string): string | string[] {
         "Led development team for award-winning logistics platform",
         "Reduced data processing time by 65% through algorithm optimization",
         "Published research paper on efficient data visualization techniques",
+        "Created popular game simulation with over 10k plays",
         "Recognized as Employee of the Year (2021)"
       ];
     case 'certificates':
