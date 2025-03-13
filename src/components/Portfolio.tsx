@@ -3,11 +3,12 @@ import { useState, useEffect } from "react";
 import { useInView } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 import { PORTFOLIO_PROJECTS, FILTER_CATEGORIES } from "@/lib/constants";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, Code, Eye } from "lucide-react";
+import { ExternalLink, Github, Code, Eye, X } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import BackButton from "./BackButton";
 
 const Portfolio = () => {
   const { ref, isInView } = useInView({}, true);
@@ -95,16 +96,21 @@ const Portfolio = () => {
         )}
       </div>
 
-      {/* Enhanced project details modal with tabs */}
+      {/* Enhanced project details modal with tabs and close button */}
       <Dialog open={!!selectedProject} onOpenChange={(open) => !open && setSelectedProject(null)}>
         <DialogContent className="max-w-4xl bg-background/95 backdrop-blur-lg border-none">
           {selectedProject && (
             <>
-              <DialogHeader>
-                <DialogTitle className="text-2xl font-bold">{selectedProject.title}</DialogTitle>
-                <DialogDescription className="text-foreground/70">
-                  {selectedProject.category}
-                </DialogDescription>
+              <DialogHeader className="flex flex-row items-center justify-between">
+                <div>
+                  <DialogTitle className="text-2xl font-bold">{selectedProject.title}</DialogTitle>
+                  <DialogDescription className="text-foreground/70">
+                    {selectedProject.category}
+                  </DialogDescription>
+                </div>
+                <DialogClose className="w-8 h-8 rounded-full flex items-center justify-center bg-foreground/10 hover:bg-foreground/20 transition-colors">
+                  <X className="h-4 w-4" />
+                </DialogClose>
               </DialogHeader>
               
               <div className="relative rounded-lg overflow-hidden h-60 sm:h-80 mb-6">
@@ -215,10 +221,12 @@ function ${selectedProject.title.replace(/\s+/g, '')}() {
                   </a>
                 </Button>
                 
-                <Button asChild className="flex-1" variant="secondary">
-                  <a href="#" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
-                    <Code className="mr-2 h-4 w-4" /> Technical Details
-                  </a>
+                <Button 
+                  className="flex-1" 
+                  variant="secondary"
+                  onClick={() => setSelectedProject(null)}
+                >
+                  <X className="mr-2 h-4 w-4" /> Close
                 </Button>
               </div>
             </>

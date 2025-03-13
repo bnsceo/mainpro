@@ -6,6 +6,8 @@ import TerminalOutput from './terminal/TerminalOutput';
 import TerminalInput from './terminal/TerminalInput';
 import TerminalOverlay from './terminal/TerminalOverlay';
 import { Command, getCurrentTimestamp, processCommand } from './terminal/commandUtils';
+import { Button } from '@/components/ui/button';
+import { Terminal } from 'lucide-react';
 
 const CyberpunkTerminal: React.FC = () => {
   const [commands, setCommands] = useState<Command[]>([
@@ -136,7 +138,21 @@ const CyberpunkTerminal: React.FC = () => {
       
       const response = processCommand(command);
       
-      if (command.trim().toLowerCase() !== 'clear') {
+      if (command.trim().toLowerCase() === 'exit') {
+        // Handle exit command
+        setTimeout(() => {
+          if (mounted.current) {
+            setCommands(prev => {
+              const updated = [...prev];
+              const lastCommandIndex = updated.length - 1;
+              updated[lastCommandIndex].response = response;
+              return updated;
+            });
+            setIsTyping(false);
+            setTerminalActive(false);
+          }
+        }, 500);
+      } else if (command.trim().toLowerCase() !== 'clear') {
         setTimeout(() => {
           if (mounted.current) {
             setCommands(prev => {
@@ -156,29 +172,54 @@ const CyberpunkTerminal: React.FC = () => {
     }
   };
 
+  const handleReopenTerminal = () => {
+    setTerminalActive(true);
+    setCommands([{ 
+      command: '', 
+      response: [
+        "// TERMINAL v4.2.1 REINITIALIZED",
+        "// SECURE CONNECTION RESTORED",
+        "// TYPE 'help' FOR AVAILABLE COMMANDS"
+      ],
+      timestamp: getCurrentTimestamp() 
+    }]);
+  };
+
   return (
-    <div 
-      ref={terminalRef}
-      className={cn(
-        "relative w-full max-w-[500px] h-[350px] m-auto rounded-lg overflow-hidden cyberpunk-terminal",
-        glitchActive && "glitch",
-        !terminalActive && "terminal-fade-out"
+    <div className="relative w-full max-w-[500px] h-[350px] flex items-center justify-center">
+      {terminalActive ? (
+        <div 
+          ref={terminalRef}
+          className={cn(
+            "w-full h-full rounded-lg overflow-hidden cyberpunk-terminal",
+            glitchActive && "glitch",
+            !terminalActive && "terminal-fade-out"
+          )}
+          style={{
+            transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(${translateZ}px)`,
+            transition: 'transform 0.2s ease-out'
+          }}
+        >
+          <TerminalHeader />
+          <TerminalOutput commands={commands} isTyping={isTyping} outputRef={outputRef} />
+          <TerminalInput 
+            inputValue={inputValue}
+            isTyping={isTyping}
+            terminalActive={terminalActive}
+            onInputChange={handleInputChange}
+            onKeyPress={handleKeyPress}
+          />
+          <TerminalOverlay />
+        </div>
+      ) : (
+        <Button 
+          onClick={handleReopenTerminal}
+          className="bg-primary/20 hover:bg-primary/30 text-foreground border border-primary/30 backdrop-blur-sm"
+        >
+          <Terminal className="mr-2 h-4 w-4" />
+          Open Terminal
+        </Button>
       )}
-      style={{
-        transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(${translateZ}px)`,
-        transition: 'transform 0.2s ease-out'
-      }}
-    >
-      <TerminalHeader />
-      <TerminalOutput commands={commands} isTyping={isTyping} outputRef={outputRef} />
-      <TerminalInput 
-        inputValue={inputValue}
-        isTyping={isTyping}
-        terminalActive={terminalActive}
-        onInputChange={handleInputChange}
-        onKeyPress={handleKeyPress}
-      />
-      <TerminalOverlay />
     </div>
   );
 };

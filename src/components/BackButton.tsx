@@ -1,10 +1,18 @@
 
 import { ArrowLeft } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
 
 const BackButton = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Only show the back button if we're not on the home page
+  const isHomePage = location.pathname === "/" || location.pathname === "";
+  
+  if (isHomePage) {
+    return null;
+  }
 
   return (
     <Button

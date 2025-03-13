@@ -49,6 +49,43 @@ export function getCurrentTimestamp() {
 export function processCommand(cmd: string): string | string[] {
   const trimmedCmd = cmd.trim().toLowerCase();
   
+  // Handle project info command
+  if (trimmedCmd.startsWith('projects info')) {
+    const parts = trimmedCmd.split(' ');
+    const projectNumber = parseInt(parts[2]);
+    
+    if (isNaN(projectNumber)) {
+      return "Please specify a valid project number, e.g., 'projects info 1'";
+    }
+    
+    switch (projectNumber) {
+      case 1:
+        return [
+          "🚀 Truck Dispatching Platform (2024)",
+          "A comprehensive logistics solution for truck fleet management",
+          "Technologies: React, Node.js, MongoDB, Google Maps API",
+          "Role: Lead Developer",
+        ];
+      case 2:
+        return [
+          "📊 Data Visualization Dashboard (2023)",
+          "Interactive analytics platform for business intelligence",
+          "Technologies: D3.js, React, TypeScript, REST API",
+          "Role: Frontend Developer & Data Visualization Specialist",
+        ];
+      case 3:
+        return [
+          "🤖 AI-Powered Chat Interface (2023)",
+          "Natural language processing application for customer support",
+          "Technologies: Python, TensorFlow, React, WebSockets",
+          "Role: Full Stack Developer",
+        ];
+      default:
+        return `Project ${projectNumber} not found. Available projects are numbered 1-3.`;
+    }
+  }
+  
+  // Handle main commands
   switch (trimmedCmd) {
     case 'whoami':
       return "Anderson Paulino – Full Stack Developer & Data Analyst";
@@ -66,6 +103,13 @@ export function processCommand(cmd: string): string | string[] {
         "🤖 AI-Powered Chat Interface (2023)",
         "Type 'projects info [number]' for details"
       ];
+    case 'contact --show':
+      return [
+        "Email: contact@digitalalchemist.com",
+        "Phone: Available upon request",
+        "LinkedIn: linkedin.com/in/andersonpaulino",
+        "Website: digitalalchemist.com"
+      ];
     case 'experience':
       return [
         "Senior Developer @ TechCorp (2022-Present)",
@@ -76,6 +120,13 @@ export function processCommand(cmd: string): string | string[] {
       return [
         "MSc Computer Science - Tech University (2020)",
         "BSc Software Engineering - Code College (2018)"
+      ];
+    case 'achievements':
+      return [
+        "Led development team for award-winning logistics platform",
+        "Reduced data processing time by 65% through algorithm optimization",
+        "Published research paper on efficient data visualization techniques",
+        "Recognized as Employee of the Year (2021)"
       ];
     case 'certificates':
       return [
@@ -109,7 +160,7 @@ export function processCommand(cmd: string): string | string[] {
     case 'help':
       return SUPPORTED_COMMANDS.map(cmd => `${cmd.name} - ${cmd.description}`);
     case 'exit':
-      return "Session terminated. Reload to restart.";
+      return "Session terminated. Click 'Open Terminal' to restart.";
     case '':
       return "";
     default:
