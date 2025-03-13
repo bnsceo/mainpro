@@ -182,8 +182,8 @@ export const SERVICES = [
 ];
 
 export const SOCIAL_LINKS = [
-  { platform: "GitHub", url: "#", icon: "github" },
-  { platform: "LinkedIn", url: "#", icon: "linkedin" },
-  { platform: "Twitter", url: "#", icon: "twitter" },
-  { platform: "Dribbble", url: "#", icon: "dribbble" },
+  { platform: "GitHub", url: "https://github.com/Anderson-s-Projects", icon: "github" },
+  { platform: "LinkedIn", url: "https://www.linkedin.com/in/82anderson-paulino/", icon: "linkedin" },
+  { platform: "X", url: "https://x.com/wookyleaks", icon: "x" }, // Updated from Twitter to X
+  { platform: "Dribbble", url: "https://dribbble.com/Ap1169?onboarding=true&designer=true", icon: "dribbble" },
 ];
