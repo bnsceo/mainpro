@@ -1,10 +1,8 @@
-
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
@@ -16,26 +14,30 @@ export default defineConfig(({ mode }) => ({
       "localhost"
     ],
   },
-  // Set the base path for GitHub Pages deployment
-  base: mode === 'production' ? '/interactive-resume-laboratory/' : '/',
+  // ✅ Corrected base path for GitHub Pages
+  base: mode === 'production' ? '/mainpro/' : '/',
+  
   plugins: [
     react(),
-    mode === 'development' &&
-    componentTagger(),
+    mode === 'development' && componentTagger(),
   ].filter(Boolean),
+  
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
+
   optimizeDeps: {
     esbuildOptions: {
-      // Set target to a compatible environment
       target: 'es2020',
     }
   },
+
   build: {
     target: 'es2020',
-    assetsInlineLimit: 0, // Ensures all assets are properly handled as external files
+    assetsInlineLimit: 0, 
+    outDir: "dist",  // ✅ Ensures correct build directory
+    emptyOutDir: true, 
   }
 }));
