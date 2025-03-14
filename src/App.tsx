@@ -11,7 +11,7 @@ const queryClient = new QueryClient();
 
 // Get base URL to handle GitHub Pages deployment
 const getBasename = () => {
-  return import.meta.env.MODE === 'production' ? '/interactive-resume-laboratory' : '/';
+  return import.meta.env.MODE === 'production' ? '/mainpro' : '/';
 };
 
 const App = () => (
