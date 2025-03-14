@@ -3,7 +3,7 @@
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/bba4458a-e5eb-4cb2-95b6-776d71700dd8
+**URL**: https://lovable.dev/projects/31cbc9b0-f109-404e-9ac7-2395879f615f
 
 ## How can I edit this code?
 
@@ -11,7 +11,7 @@ There are several ways of editing your application.
 
 **Use Lovable**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/bba4458a-e5eb-4cb2-95b6-776d71700dd8) and start prompting.
+Simply visit the [https://lovable.dev/projects/31cbc9b0-f109-404e-9ac7-2395879f615f) and start prompting.
 
 Changes made via Lovable will be committed automatically to this repo.
 
@@ -55,7 +55,7 @@ npm run dev
 
 This project is configured to automatically deploy to GitHub Pages when you push to the main branch. You can view the deployed site at:
 
-https://bnsceo.github.io/interactive-resume-laboratory/
+https://github.com/bnsceo/mainpro
 
 ### Manual Deployment
 
@@ -87,7 +87,7 @@ This project is built with:
 
 ## How can I deploy this project elsewhere?
 
-Simply open [Lovable](https://lovable.dev/projects/bba4458a-e5eb-4cb2-95b6-776d71700dd8) and click on Share -> Publish.
+Simply open (https://lovable.dev/projects/31cbc9b0-f109-404e-9ac7-2395879f615f) and click on Share -> Publish.
 
 ## I want to use a custom domain - is that possible?
 
