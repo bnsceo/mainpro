@@ -23,7 +23,6 @@ const Resume = () => {
       if (printWindow) {
         // Create a simplified version for printing
         printWindow.document.write(`
-<!DOCTYPE html>
 <html>
 <head>
   <title>Anderson Paulino - Resume</title>
