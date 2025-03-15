@@ -23,144 +23,134 @@ const Resume = () => {
       if (printWindow) {
         // Create a simplified version for printing
         printWindow.document.write(`
-          <html>
-            <head>
-              <title>Anderson Paulino - Resume</title>
-              <style>
-                body {
-                  font-family: 'Arial', sans-serif;
-                  color: #333;
-                  line-height: 1.6;
-                  padding: 20px;
-                  max-width: 800px;
-                  margin: 0 auto;
-                }
-                h1, h2, h3 {
-                  color: #444;
-                }
-                h1 {
-                  font-size: 24px;
-                  border-bottom: 2px solid #7B68EE;
-                  padding-bottom: 10px;
-                  margin-bottom: 20px;
-                }
-                h2 {
-                  font-size: 18px;
-                  margin-top: 20px;
-                  border-bottom: 1px solid #ddd;
-                  padding-bottom: 5px;
-                }
-                h3 {
-                  font-size: 16px;
-                  margin: 15px 0 5px;
-                }
-                ul {
-                  margin: 5px 0;
-                }
-                .section {
-                  margin-bottom: 25px;
-                }
-                .experience-item, .education-item, .cert-item {
-                  margin-bottom: 15px;
-                }
-                .badge {
-                  display: inline-block;
-                  background: #f0f0f0;
-                  border-radius: 15px;
-                  padding: 3px 10px;
-                  margin: 3px;
-                  font-size: 12px;
-                }
-                .header {
-                  text-align: center;
-                  margin-bottom: 30px;
-                }
-                @media print {
-                  body {
-                    padding: 0;
-                  }
-                }
-              </style>
-            </head>
-            <body>
-              <div class="header">
-                <h1>Anderson Paulino</h1>
-                <p>Full Stack Developer & Data Analyst</p>
-                <p>contact@digitalalchemist.com | linkedin.com/in/andersonpaulino</p>
-              </div>
-              
-              <div class="section">
-                <h2>Professional Summary</h2>
-                <p>
-                  Experienced professional with a strong background in security management, customer service, and team leadership. 
-                  Skilled in digital marketing, web development, and data analysis with a focus on creating meaningful insights and user experiences.
-                </p>
-                <p>
-                  Committed to continuous learning and skill development with certifications in cybersecurity, business intelligence, and data analytics. 
-                  Bilingual in English and Spanish with proven ability to manage teams effectively and deliver exceptional service in high-profile environments.
-                </p>
-              </div>
-              
-              <div class="section">
-                <h2>Experience</h2>
-                ${RESUME_SECTIONS.experience.map(exp => `
-                  <div class="experience-item">
-                    <h3>${exp.title}</h3>
-                    <p><strong>${exp.organization}</strong> | ${exp.period}</p>
-                    <p>${exp.description}</p>
-                  </div>
-                `).join('')}
-              </div>
-              
-              <div class="section">
-                <h2>Education</h2>
-                ${RESUME_SECTIONS.education.map(edu => `
-                  <div class="education-item">
-                    <h3>${edu.title}</h3>
-                    <p><strong>${edu.organization}</strong> | ${edu.period}</p>
-                    <p>${edu.description}</p>
-                  </div>
-                `).join('')}
-              </div>
-              
-              <div class="section">
-                <h2>Skills</h2>
-                <div>
-                  ${RESUME_SECTIONS.skills.map(skill => `
-                    <span class="badge">${skill}</span>
-                  `).join('')}
-                </div>
-              </div>
-              
-              <div class="section">
-                <h2>Certifications</h2>
-                ${RESUME_SECTIONS.certifications.map(cert => `
-                  <div class="cert-item">
-                    <h3>${cert.title}</h3>
-                    <p>${cert.organization} | ${cert.year}</p>
-                  </div>
-                `).join('')}
-              </div>
-              
-              <div class="section">
-                <h2>Languages</h2>
-                <div>
-                  ${RESUME_SECTIONS.languages.map(lang => `
-                    <span class="badge">${lang}</span>
-                  `).join('')}
-                </div>
-              </div>
-              
-              <div class="section">
-                <h2>Awards & Recognition</h2>
-                <ul>
-                  ${RESUME_SECTIONS.awards.map(award => `
-                    <li>${award}</li>
-                  `).join('')}
-                </ul>
-              </div>
-            </body>
-          </html>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Anderson Paulino - Resume</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1, h2, h3 {
+      color: #444;
+    }
+    h1 {
+      font-size: 24px;
+      border-bottom: 2px solid #7B68EE;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-size: 18px;
+      margin-top: 20px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+    }
+    h3 {
+      font-size: 16px;
+      margin: 15px 0 5px;
+    }
+    ul {
+      margin: 5px 0;
+    }
+    .section {
+      margin-bottom: 25px;
+    }
+    .badge {
+      display: inline-block;
+      background: #f0f0f0;
+      border-radius: 15px;
+      padding: 3px 10px;
+      margin: 3px;
+      font-size: 12px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    @media print {
+      body {
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Anderson Paulino</h1>
+    <p>Full Stack Developer & Data Analyst</p>
+    <p>contact@digitalalchemist.com | linkedin.com/in/andersonpaulino</p>
+  </div>
+  
+  <div class="section">
+    <h2>Professional Summary</h2>
+    <p>Experienced professional with a strong background in security management, customer service, and team leadership. Skilled in digital marketing, web development, and data analysis with a focus on creating meaningful insights and user experiences.</p>
+    <p>Committed to continuous learning and skill development with certifications in cybersecurity, business intelligence, and data analytics. Bilingual in English and Spanish with proven ability to manage teams effectively and deliver exceptional service in high-profile environments.</p>
+  </div>
+  
+  <div class="section">
+    <h2>Experience</h2>
+    <div class="experience-item">
+      <h3>Shift Supervisor | Allied Universal</h3>
+      <p><strong>March 2020 - May 2024</strong></p>
+      <p>Managed security operations in high-profile environments, ensuring safety and excellent customer service.</p>
+    </div>
+    <div class="experience-item">
+      <h3>Driver | Uber</h3>
+      <p><strong>2024 – Present</strong></p>
+      <p>Provided professional transportation services, ensuring customer satisfaction and safety.</p>
+    </div>
+  </div>
+  
+  <div class="section">
+    <h2>Skills</h2>
+    <div>
+      <span class="badge">Web Development</span>
+      <span class="badge">Data Analysis</span>
+      <span class="badge">Digital Marketing</span>
+      <span class="badge">Security Operations</span>
+      <span class="badge">Customer Service</span>
+    </div>
+  </div>
+  
+  <div class="section">
+    <h2>Certifications</h2>
+    <div class="cert-item">
+      <h3>Digital Marketing & E-commerce</h3>
+    </div>
+    <div class="cert-item">
+      <h3>Business Intelligence</h3>
+    </div>
+    <div class="cert-item">
+      <h3>Data Analytics</h3>
+    </div>
+    <div class="cert-item">
+      <h3>Cybersecurity with Python</h3>
+    </div>
+  </div>
+  
+  <div class="section">
+    <h2>Languages</h2>
+    <div>
+      <span class="badge">English (Fluent)</span>
+      <span class="badge">Spanish (Fluent)</span>
+    </div>
+  </div>
+  
+  <div class="section">
+    <h2>Awards & Recognition</h2>
+    <ul>
+      <li>Allied Universal - Employer of the Year (2021)</li>
+    </ul>
+  </div>
+</body>
+</html>
+
         `);
         
         printWindow.document.close();
