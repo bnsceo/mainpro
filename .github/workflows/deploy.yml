@@ -1,5 +1,5 @@
 # GitHub Actions Workflow for Deploying Vite App to GitHub Pages
-name: Deploy to GitHub Pages
+name: Deploy Polynesian Escape Nuance to GitHub Pages
 
 on:
   push:
@@ -33,12 +33,12 @@ jobs:
         run: npm ci
 
       - name: Set correct base path for GitHub Pages
-        run: echo "VITE_BASE=/mainpro/" >> $GITHUB_ENV  # Ensures correct base path
+        run: echo "VITE_BASE=/polynesian-escape-nuance/" >> $GITHUB_ENV  # Ensures correct base path
 
       - name: Build project
         run: npm run build
         env:
-          VITE_BASE: "/mainpro/"  # Pass the correct base URL to Vite
+          VITE_BASE: "/polynesian-escape-nuance/"  # Pass the correct base URL to Vite
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
